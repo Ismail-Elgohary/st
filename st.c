@@ -17,7 +17,6 @@
 #include <unistd.h>
 #include <wchar.h>
 
-#include "autocomplete.h"
 #include "st.h"
 #include "win.h"
 
@@ -2624,7 +2623,6 @@ tresize(int col, int row)
 		return;
 	}
 
-	autocomplete ((const Arg []) { ACMPL_DEACTIVATE });
 
 	/*
 	 * slide screen to keep cursor where we expect it -
@@ -2768,15 +2766,6 @@ void autocomplete (const Arg * arg)
 		acmpl_cmdindex_prev = acmpl_cmdindex;
 
 	static const char * const (acmpl_cmd []) = {
-		[ACMPL_DEACTIVATE]	= "__DEACTIVATE__",
-		[ACMPL_WORD]		= "word-complete",
-		[ACMPL_WWORD]		= "WORD-complete",
-		[ACMPL_FUZZY_WORD]	= "fuzzy-word-complete",
-		[ACMPL_FUZZY_WWORD]	= "fuzzy-WORD-complete",
-		[ACMPL_FUZZY]		= "fuzzy-complete",
-		[ACMPL_SUFFIX]		= "suffix-complete",
-		[ACMPL_SURROUND]	= "surround-complete",
-		[ACMPL_UNDO]		= "__UNDO__",
 	};
 
 	static char acmpl [1000];		// ACMPL_ISSUE: why 1000?
@@ -2797,7 +2786,6 @@ void autocomplete (const Arg * arg)
 
 // Check for deactivation
 
-	if (acmpl_cmdindex == ACMPL_DEACTIVATE)
 	{
 
 //     Deactivate autocomplete mode keeping current completion
@@ -2820,7 +2808,6 @@ void autocomplete (const Arg * arg)
 
 // Check for undo
 
-	if (acmpl_cmdindex == ACMPL_UNDO)
 	{
 
 //     Deactivate autocomplete mode recovering target
@@ -2988,7 +2975,6 @@ acmpl_begin:
 			tl++;
 		}
 
-// Autcomplete
 
 	complen_prev = strlen (completion);
 	ttywrite (completion, complen_prev, 0);

@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:pixelsize=18:antialias=true:autohint=true:weight=bold";
 static int borderpx = 2;
+static char *font = "monospace:pixelsize=20:antialias=true:autohint=true:weight=semibold";
 
 /*
  * What program is execed by st depends of these precedence rules:
